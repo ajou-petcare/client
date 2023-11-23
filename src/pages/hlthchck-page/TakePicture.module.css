@@ -1,0 +1,27 @@
+.container {
+    position: absolute;
+    z-index : 100;
+    width: calc(100% - 56px);
+    background-color: white;
+}
+
+.video-cam {
+    width: 100%;
+    transform: rotateY(180deg);
+}
+
+.div-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    margin: 10px;
+    border-radius: 10px;
+    position: absolute;
+    z-index : 101;
+    bottom: 5%;
+    left: 46%;
+    cursor: pointer;
+    background-color: white;
+}

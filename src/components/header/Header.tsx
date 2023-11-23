@@ -46,6 +46,7 @@ const Header: FC = () => {
         const _loc = location.pathname.split('/').at(1);
         if (_loc === '') setReturnEl(<HomeHeader />);
         if (_loc === 'hosp') setReturnEl(<DefaultHeader headerName={'근처 동물병원 찾기'} />);
+        if (_loc === 'hlthchck') setReturnEl(<DefaultHeader headerName={'반려동물 건강 진단'} />);
     }, [location]);
     
     return (

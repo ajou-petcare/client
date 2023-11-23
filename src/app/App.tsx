@@ -6,6 +6,7 @@ import {Routes, Route, useNavigate} from "react-router-dom";
 import Header from "../components/header/Header";
 import Navigator from "../components/navigator/Navigator";
 import {LoginProvider} from "../contexts/login-info";
+import HlthchckPage from "../pages/hlthchck-page/HlthchckPage";
 import HospPage from "../pages/hosp-page/HospPage";
 import LoginPage from "../pages/login-page/LoginPage";
 import MainPage from "../pages/main-page/MainPage";
@@ -40,6 +41,7 @@ function App() {
                         <Route path={APP_ROUTE.SIGNUP} element={<SignupPage />} />
                         <Route path={APP_ROUTE.MAIN} element={<MainPage />} />
                         <Route path={APP_ROUTE.HOSP} element={<HospPage />} />
+                        <Route path={APP_ROUTE.HLTHCHCK} element={<HlthchckPage />} />
                     </Routes>
                 </article>
             </div>
