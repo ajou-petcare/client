@@ -5,6 +5,7 @@ import {Routes, Route, useNavigate} from "react-router-dom";
 
 import Header from "../components/header/Header";
 import Navigator from "../components/navigator/Navigator";
+import {LoginProvider} from "../contexts/login-info";
 import LoginPage from "../pages/login-page/LoginPage";
 import MainPage from "../pages/main-page/MainPage";
 import SignupPage from "../pages/signup-page/SignupPage";
@@ -15,7 +16,6 @@ import APP_ROUTE from "./config/route";
 
 function App() {
     const [login, setLogin] = useState(true);
-    const [headerName, setHeaderName] = useState('');
     
     const navigator = useNavigate();
     
@@ -25,21 +25,23 @@ function App() {
     }, [login]);
     
     return (
-        <div className={"App"}>
-            {login &&
+        <LoginProvider>
+            <div className={"App"}>
+                {login &&
                     <>
-                        <Header headerName={headerName} />
+                        <Header />
                         <Navigator />
                     </>
-            }
-            <article className={S['page-container']}>
-                <Routes>
-                    <Route path={APP_ROUTE.LOGIN} element={<LoginPage setLogin={setLogin} />} />
-                    <Route path={APP_ROUTE.SIGNUP} element={<SignupPage />} />
-                    <Route path={APP_ROUTE.MAIN} element={<MainPage />} />
-                </Routes>
-            </article>
-        </div>
+                }
+                <article className={S['page-container']}>
+                    <Routes>
+                        <Route path={APP_ROUTE.LOGIN} element={<LoginPage setLogin={setLogin} />} />
+                        <Route path={APP_ROUTE.SIGNUP} element={<SignupPage />} />
+                        <Route path={APP_ROUTE.MAIN} element={<MainPage />} />
+                    </Routes>
+                </article>
+            </div>
+        </LoginProvider>
     );
 }
 

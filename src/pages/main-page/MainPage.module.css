@@ -1,0 +1,11 @@
+.container {
+    padding: 32px 28px;
+}
+
+.container h1 {
+    font-size: 24px;
+}
+
+.container span {
+    color: red;
+}

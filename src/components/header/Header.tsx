@@ -24,8 +24,8 @@ const HomeHeader = () => {
     );
 };
 
-interface MenuHeaderProps { headerName: props['headerName']; }
-const DefaultHeader: FC<MenuHeaderProps> = ({ headerName }) => {
+interface DefaultHeaderProps { headerName: string; }
+const DefaultHeader: FC<DefaultHeaderProps> = ({ headerName }) => {
     return (
         <div className={S['menu']}>
             <Link to={'/'}>
@@ -38,16 +38,16 @@ const DefaultHeader: FC<MenuHeaderProps> = ({ headerName }) => {
 };
 
 
-interface props { headerName: string; }
-const Header: FC<props> = ({ headerName }) => {
+const Header: FC = () => {
     const location = useLocation();
     const [returnEl, setReturnEl] = useState<JSX.Element>(<></>);
+    const [headerName, setHeaderName] = useState('');
     
     useEffect(() => {
         const _loc = location.pathname.split('/').at(1);
         if (_loc === '') setReturnEl(<HomeHeader />);
-        else setReturnEl(<DefaultHeader headerName={headerName} />)
-    }, [location, headerName]);
+        else setReturnEl(<DefaultHeader headerName={headerName} />);
+    }, [location]);
     
     return (
         <header className={S['container']}>
