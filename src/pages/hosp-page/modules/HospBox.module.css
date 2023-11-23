@@ -1,0 +1,15 @@
+.container {
+    padding: 16px;
+    background-color: #e2e2e2;
+    margin-bottom: 32px;
+    border-radius: 16px;
+}
+
+.container h1 {
+    font-size: 21px;
+    margin-bottom: 16px;
+}
+
+.container p {
+    margin-top: 8px;
+}

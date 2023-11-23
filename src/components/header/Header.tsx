@@ -41,12 +41,11 @@ const DefaultHeader: FC<DefaultHeaderProps> = ({ headerName }) => {
 const Header: FC = () => {
     const location = useLocation();
     const [returnEl, setReturnEl] = useState<JSX.Element>(<></>);
-    const [headerName, setHeaderName] = useState('');
     
     useEffect(() => {
         const _loc = location.pathname.split('/').at(1);
         if (_loc === '') setReturnEl(<HomeHeader />);
-        else setReturnEl(<DefaultHeader headerName={headerName} />);
+        if (_loc === 'hosp') setReturnEl(<DefaultHeader headerName={'근처 동물병원 찾기'} />);
     }, [location]);
     
     return (
