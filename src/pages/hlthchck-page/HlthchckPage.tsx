@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 import S from './HlthchckPage.module.css';
 import TakePicture from "./TakePicture";
@@ -12,6 +12,12 @@ const HlthchckPage = () => {
         setPicMode(true);
     };
     
+    
+    useEffect(() => {
+        console.log('image', image);
+    }, [image]);
+    
+    
     const handleClickGallary = () => {
         const input = document.createElement('input');
         input.type = 'file';
@@ -22,7 +28,7 @@ const HlthchckPage = () => {
             const reader = new FileReader();
             reader.onloadend = () => {
                 // @ts-ignore
-                setImage(reader.result);
+                setImage(() => reader.result);
             };
             reader.readAsDataURL(file);
         };
