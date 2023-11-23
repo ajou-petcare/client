@@ -1,0 +1,50 @@
+.container {
+    height: var(--header-height);
+    width: 100%;
+    padding: 15px;
+
+    font-weight: bold;
+    font-size: var(--fs-5);
+
+    border-bottom: 1px solid var(--gray-1);
+    background-color: white;
+
+    position: fixed;
+    top: 0;
+}
+
+.home {
+    height: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-length {
+    position: absolute;
+    bottom: 5px;
+    right: 25px;
+    float: left;
+    background-color: red;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    border-radius: 20px;
+    color: white;
+}
+
+.cart {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

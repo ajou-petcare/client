@@ -1,0 +1,45 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    margin-top: -48px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.container input {
+    border: 1px solid var(--gray-1);
+    width: 80%;
+    height: 36px;
+    padding: 4px;
+    padding-left: 8px;
+}
+
+.btn-area {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+.btn-area button {
+    width: calc(40% - 8px);
+    height: 36px;
+    border-radius: 8px;
+}
+
+.signup-btn {
+    border: none;
+    background-color: var(--brand-color);
+    color: white;
+}
+
+.password-same {
+    color: blue;
+}
+.password-unsame {
+    color: red;
+}
