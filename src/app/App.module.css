@@ -1,0 +1,8 @@
+.page-container {
+    margin-top: var(--header-height);
+    height: 100%;
+}
+
+.BS-on {
+    opacity: 0.2;
+}
