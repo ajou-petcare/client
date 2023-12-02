@@ -16,21 +16,21 @@ const ResultPage = () => {
     
     
     return (
-        <div>
-            <p><b>{loginInfo?.pets[0].petname}의 건강 상태는 다음과 같습니다</b></p>
+        <div className={S['container']}>
+            <h1><b>{loginInfo?.pets[0].petname}의 건강 상태는 다음과 같습니다</b></h1>
             {
                 // @ts-ignore
-                queries['diagnosis']
+                queries['diagnosis'] === '무증상'
                     ?
                     <div>
-                        {/*// @ts-ignore*/}
-                        <p><b>{queries['diagnosis']}</b> 증상이 의심됩니다. 가까운 동물병원 내원을 추천드립니다</p>
-                        {/*// @ts-ignore*/}
-                        <p>{queries['foodRecommendation']}</p>
+                        <h1>증상이 없는 것으로 예측됩니다.</h1>
                     </div>
                     :
                     <div>
-                        <h1>증상이 없는 것으로 예측됩니다.</h1>
+                        {/*// @ts-ignore*/}
+                        <h1><b>{queries['diagnosis']}</b> 증상이 의심됩니다. 가까운 동물병원 내원을 추천드립니다</h1>
+                        {/*// @ts-ignore*/}
+                        <p>{queries['foodRecommendation']}</p>
                     </div>
             }
         </div>
