@@ -25,12 +25,13 @@ async function fetchData<T> (url: string, method: FetchMethod, payload?: any): P
     let response;
 	
     try {
-        request = await fetch(`${API_URL}${url}`, {
+        request = await fetch(`${API_URL}/api${url}`, {
             method,
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(payload)
+            body: JSON.stringify(payload),
+            // credentials: 'include'
         });
         response = await request.json() as T;
     } catch (e) {
