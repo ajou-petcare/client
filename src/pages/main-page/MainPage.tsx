@@ -8,7 +8,7 @@ const MainPage = () => {
     const { loginInfo, setLoginInfo } = useContext(LoginContext);
     
     useEffect(() => {
-        setLoginInfo({ username: '박종원', pets: [{ petname: '대박이' }] });
+        setLoginInfo({ id: 1, username: '박종원', pets: [{ petname: '대박이' }] });
     }, []);
     
     return (

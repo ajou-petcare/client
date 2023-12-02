@@ -49,7 +49,7 @@ const HospPage = () => {
             }
             
             try {
-                const response = await fetchData<HospPageModel>('/findHosp/findNearHosp?latitude=1&longitude=1', 'GET');
+                const response = await fetchData<HospPageModel>(`/findHosp/findNearHosp?latitude=${ret.latitude}&longitude=${ret.longitude}`, 'GET');
                 setModel(response);
             } catch (e) {
                 console.error(e);
@@ -59,11 +59,11 @@ const HospPage = () => {
     
     return (
         <div className={S['container']}>
-            <h1>사용자의 위치정보를 기반으로 영업 중인 동물병원을 거리순으로 제시합니다</h1>
+            <h1>사용자의 위치정보를 기반으로 영업 중인 동물병원을 거리순으로 제시합니다.</h1>
             {
-                model && model.map((d, i) => (
+                (model && model.length) ? model.map((d, i) => (
                     <HospBox key={`HospBox-${i}`} data={d} />
-                ))
+                )) : <h1>GPS 권한을 허용해주세요. 미허용시 해당 서비스 이용이 제한됩니다.</h1>
             }
         </div>
     );

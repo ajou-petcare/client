@@ -1,9 +1,10 @@
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
 import APP_ROUTE from "../../app/config/route";
 import {fetchData} from "../../common/utils/api";
 import Loading from "../../components/loading/Loading";
+import {LoginContext} from "../../contexts/login-info";
 
 import S from './HlthchckPage.module.css';
 import TakePicture from "./TakePicture";
@@ -14,7 +15,9 @@ interface HlthModel {
 }
 
 const HlthchckPage = () => {
-    const [selected, setSelected] = useState('eye-chck');
+    const { loginInfo, setLoginInfo } = useContext(LoginContext);
+    
+    const [selected, setSelected] = useState('eye');
     const [image, setImage] = useState('');
     const [picMode, setPicMode] = useState(false);
     const [petId, setPetId] = useState('');
@@ -33,8 +36,8 @@ const HlthchckPage = () => {
         void (async () => {
             try {
                 setLoading(true);
-                const response = await fetchData<HlthModel>('/healthCheck', 'POST', {
-                    image, petId
+                const response = await fetchData<HlthModel>(`/checkup/${selected}`, 'POST', {
+                    image, petName: loginInfo?.pets[0].petname
                 });
                 setModel(response);
             } catch (e) {
@@ -79,16 +82,16 @@ const HlthchckPage = () => {
             <h2 className={'mb-2'}>모드를 선택해주세요</h2>
             <div className={S['inputs']}>
                 <div>
-                    <input onChange={() => setSelected('eye-chck')} checked={selected === 'eye-chck'} type={'radio'} id={'eye-chck'} />
-                    <label htmlFor={'eye-chck'}>눈 건강</label><br />
+                    <input onChange={() => setSelected('eye')} checked={selected === 'eye'} type={'radio'} id={'eye'} />
+                    <label htmlFor={'eye'}>눈 건강</label><br />
                 </div>
                 <div>
-                    <input onChange={() => setSelected('skin-chck')} checked={selected === 'skin-chck'} type={'radio'} id={'skin-chck'} />
-                    <label htmlFor={'skin-chck'}>피부 질환</label><br />
+                    <input onChange={() => setSelected('skin')} checked={selected === 'skin'} type={'radio'} id={'skin'} />
+                    <label htmlFor={'skin'}>피부 질환</label><br />
                 </div>
                 <div>
-                    <input onChange={() => setSelected('bcs-chck')} checked={selected === 'bcs-chck'} type={'radio'} id={'bcs-chck'} />
-                    <label htmlFor={'bcs-chck'}>비만도 상태</label><br />
+                    <input onChange={() => setSelected('bcs')} checked={selected === 'bcs'} type={'radio'} id={'bcs'} />
+                    <label htmlFor={'bcs'}>비만도 상태</label><br />
                 </div>
             </div>
             <div className={S['btns']}>

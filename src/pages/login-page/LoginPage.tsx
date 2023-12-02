@@ -1,12 +1,16 @@
-import {useState} from "react";
+import {useContext, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
 import APP_ROUTE from "../../app/config/route";
 import {fetchData} from "../../common/utils/api";
+import {LoginContext} from "../../contexts/login-info";
 
 import S from './LoginPage.module.css';
 
+import type {LoginInfo} from "../../app/config/type";
 import type {Dispatch, FC, SetStateAction} from "react";
+
+
 
 
 interface props {
@@ -14,6 +18,8 @@ interface props {
 }
 
 const LoginPage: FC<props> = ({ setLogin }) => {
+    const { loginInfo, setLoginInfo } = useContext(LoginContext);
+    
     const [id, setId] = useState('');
     const [pw, setPw] = useState('');
     
@@ -25,8 +31,9 @@ const LoginPage: FC<props> = ({ setLogin }) => {
     const handleLogin = () => {
         void (async () => {
             try {
-                await fetchData(`/login`, 'POST', { username: id, password: pw });
+                const response = await fetchData<LoginInfo>(`/login`, 'POST', { username: id, password: pw });
                 setLogin(true);
+                setLoginInfo(response);
             } catch (e) {
                 alert('Login failed');
                 console.error(e);
