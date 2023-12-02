@@ -1,5 +1,7 @@
 import {useEffect, useState} from "react";
 
+import {fetchData} from "../../common/utils/api";
+
 import {HOSP_DUMMY} from "./config/dummy";
 import S from './HostPage.module.css';
 import HospBox from "./modules/HospBox";
@@ -31,8 +33,28 @@ const HospPage = () => {
     const [model, setModel] = useState<HospPageModel>([]);
     
     useEffect(() => {
-        getGetLoc();
-        setModel(HOSP_DUMMY);
+        void (async () => {
+            let ret;
+            
+            try {
+                ret = getGetLoc();
+            } catch (e) {
+                alert("GPS permission error");
+                console.error(e);
+            }
+            
+            if (!ret) {
+                alert('Please enable GPS permission');
+                return;
+            }
+            
+            try {
+                const response = await fetchData<HospPageModel>('/findHosp/findNearHosp?latitude=1&longitude=1', 'GET');
+                setModel(response);
+            } catch (e) {
+                console.error(e);
+            }
+        })();
     }, []);
     
     return (

@@ -1,6 +1,8 @@
+import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 
 import APP_ROUTE from "../../app/config/route";
+import {fetchData} from "../../common/utils/api";
 
 import S from './LoginPage.module.css';
 
@@ -12,21 +14,31 @@ interface props {
 }
 
 const LoginPage: FC<props> = ({ setLogin }) => {
+    const [id, setId] = useState('');
+    const [pw, setPw] = useState('');
+    
     const navigate = useNavigate();
     
     const handleGotoSignup = () => {
         navigate(APP_ROUTE.SIGNUP);
     };
     const handleLogin = () => {
-        // TODO:: Login
-        setLogin(true);
+        void (async () => {
+            try {
+                await fetchData(`/login`, 'POST', { username: id, password: pw });
+                setLogin(true);
+            } catch (e) {
+                alert('Login failed');
+                console.error(e);
+            }
+        })();
     };
     
     return (
         <div className={S['container']}>
             <span className={'mb-4'}>반려동물 건강 솔루션<br/><b className={'bold'}>AJOU PETCARE</b> 입니다</span>
-            <input placeholder={'아이디를 입력해주세요.'} />
-            <input placeholder={'비밀번호를 입력해주세요.'} type={'password'} />
+            <input onInput={(e: any) => { setId(e.target.value); }} placeholder={'아이디를 입력해주세요.'} />
+            <input onInput={(e: any) => { setPw(e.target.value); }} placeholder={'비밀번호를 입력해주세요.'} type={'password'} />
             <div className={S['btn-area']}>
                 <button className={S['signup-btn']} onClick={handleGotoSignup}>회원가입</button>
                 <button className={S['login-btn']} onClick={handleLogin}

@@ -10,6 +10,7 @@ import HlthchckPage from "../pages/hlthchck-page/HlthchckPage";
 import HospPage from "../pages/hosp-page/HospPage";
 import LoginPage from "../pages/login-page/LoginPage";
 import MainPage from "../pages/main-page/MainPage";
+import ResultPage from "../pages/result-page/ResultPage";
 import SignupPage from "../pages/signup-page/SignupPage";
 
 import S from './App.module.css';
@@ -21,10 +22,10 @@ function App() {
     
     const navigator = useNavigate();
     
-    useEffect(() => {
-        if (!login) navigator(APP_ROUTE.LOGIN);
-        else navigator(APP_ROUTE.MAIN);
-    }, [login]);
+    // useEffect(() => {
+    //     if (!login) navigator(APP_ROUTE.LOGIN);
+    //     if (login) navigator(APP_ROUTE.MAIN);
+    // }, [login]);
     
     return (
         <LoginProvider>
@@ -42,6 +43,7 @@ function App() {
                         <Route path={APP_ROUTE.MAIN} element={<MainPage />} />
                         <Route path={APP_ROUTE.HOSP} element={<HospPage />} />
                         <Route path={APP_ROUTE.HLTHCHCK} element={<HlthchckPage />} />
+                        <Route path={APP_ROUTE.RESULT} element={<ResultPage />} />
                     </Routes>
                 </article>
             </div>

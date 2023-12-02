@@ -18,6 +18,14 @@ module.exports = {
             ],
             "parserOptions": {
                 "sourceType": "script"
+            },
+        },
+        {
+            "files": ["*.js"],
+            "rules": {
+                "@typescript-eslint/*": "off",
+                "react/*": "off"
+                // This disables all TypeScript-specific ESLint rules for .js files
             }
         }
     ],
@@ -38,6 +46,7 @@ module.exports = {
 
         // react.js
         "react/react-in-jsx-scope": "off",
+        "react/prop-types": "off",
 
         // typescript
         "@typescript-eslint/consistent-type-imports": ["error", {

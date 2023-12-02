@@ -5,7 +5,8 @@ const APP_ROUTE = Object.freeze({
     HOSP: '/hosp',
     HLTHCHCK: '/hlthchck',
     STAT: '/stat',
-    INFO: '/info'
+    INFO: '/info',
+    RESULT: '/result'
 });
 
 export default APP_ROUTE;
