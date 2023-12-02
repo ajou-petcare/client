@@ -10,23 +10,26 @@ import type {HospPageModel} from "./config/type";
 
 
 function getGetLoc() {
-    const ret = { latitude: 0, longitude: 0 };
-    
-    if ('geolocation' in navigator) {
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                ret.latitude = position.coords.latitude;
-                ret.longitude = position.coords.longitude;
-            },
-            (error) => {
-                console.error("err" + error.code, error.message);
-            }
-        );
-    } else {
-        console.log("Geolocation is not supported by this browser.");
-    }
-    
-    return ret;
+    return new Promise((resolve, reject) => {
+        if ('geolocation' in navigator) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const ret = {
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude
+                    };
+                    resolve(ret);
+                },
+                (error) => {
+                    console.error("err" + error.code, error.message);
+                    reject(error);
+                }
+            );
+        } else {
+            console.log("Geolocation is not supported by this browser.");
+            reject(new Error("Geolocation is not supported"));
+        }
+    });
 }
 
 const HospPage = () => {
@@ -34,16 +37,17 @@ const HospPage = () => {
     
     useEffect(() => {
         void (async () => {
-            let ret;
+            let ret: any;
             
             try {
-                ret = getGetLoc();
+                ret = await getGetLoc();
             } catch (e) {
                 alert("GPS permission error");
                 console.error(e);
                 return;
             }
             
+            // @ts-ignore
             if (ret.latitude === 0 || ret.longitude === 0) {
                 alert('Please enable GPS permission');
                 return;
