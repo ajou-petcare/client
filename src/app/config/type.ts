@@ -1,4 +1,5 @@
 interface LoginInfo {
+	id: number;
 	username: string;
 	pets: PetInfo[];
 }
