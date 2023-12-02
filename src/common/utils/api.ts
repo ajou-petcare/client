@@ -8,7 +8,7 @@ const FETCH_METHOD = Object.freeze({
 
 type FetchMethod = typeof FETCH_METHOD[keyof typeof FETCH_METHOD];
 
-const DEV_API_URL = 'http://localhost:8080';
+const DEV_API_URL = 'http://localhost:3080';
 const PROD_API_URL = '';
 
 const API_URL = process.env.NODE_ENV === 'production' ? PROD_API_URL : DEV_API_URL;

@@ -11,10 +11,11 @@ export default function TakePicture({ picMode, setPicMode, setImage }) {
     const [CameraState, setCameraState] = useState('');
 
     useEffect(() => {
+        if (!picMode) return;
         getWebcam((stream => {
             videoRef.current.srcObject = stream;
         }));
-    }, []);
+    }, [picMode]);
 
     const getWebcam = (callback) => {
         try {

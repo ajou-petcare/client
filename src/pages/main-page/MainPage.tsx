@@ -7,9 +7,9 @@ import S from './MainPage.module.css';
 const MainPage = () => {
     const { loginInfo, setLoginInfo } = useContext(LoginContext);
     
-    useEffect(() => {
-        setLoginInfo({ id: 1, username: '박종원', pets: [{ petname: '대박이' }] });
-    }, []);
+    // useEffect(() => {
+    //     setLoginInfo({ id: 1, username: '박종원', pets: [{ petname: '대박이' }] });
+    // }, []);
     
     return (
         <div className={S['container']}>

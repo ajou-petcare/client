@@ -47,6 +47,7 @@ const Header: FC = () => {
         if (_loc === '') setReturnEl(<HomeHeader />);
         if (_loc === 'hosp') setReturnEl(<DefaultHeader headerName={'근처 동물병원 찾기'} />);
         if (_loc === 'hlthchck') setReturnEl(<DefaultHeader headerName={'반려동물 건강 진단'} />);
+        if (_loc === 'stat') setReturnEl(<DefaultHeader headerName={'건강진단 통계보기'} />);
     }, [location]);
     
     return (

@@ -41,9 +41,10 @@ const HospPage = () => {
             } catch (e) {
                 alert("GPS permission error");
                 console.error(e);
+                return;
             }
             
-            if (!ret) {
+            if (ret.latitude === 0 || ret.longitude === 0) {
                 alert('Please enable GPS permission');
                 return;
             }
